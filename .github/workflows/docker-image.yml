@@ -24,7 +24,7 @@ jobs:
         password: "sandeepsaveetha"
     
     - name: Build the Image
-      run: docker build . --file Dockerfile --tag saisandeep17/newCalculator:1
+      run: docker build . --file Dockerfile --tag saisandeep17/newcalculator:1
 
     - name: Push the Image
-      run: docker push saisandeep17/newCalculator:1
+      run: docker push saisandeep17/newcalculator:1
