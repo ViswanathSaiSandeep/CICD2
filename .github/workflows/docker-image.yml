@@ -1,18 +1,30 @@
-name: Docker Image CI
+name: Docker Image CI/CD
 
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
 
-  build:
+  build-and-push:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: Checkout the code
+      uses: actions/checkout@v4
+    
+    - name: Setup the Python
+      uses: actions/setup-python@v4
+
+    - name: Docker Login
+      uses: docker/login-action@v2
+      with:
+        username: "saisandeep17"
+        password: "sandeepsaveetha"
+    
+    - name: Build the Image
+      run: docker build . --file Dockerfile --tag saisandeep17/newCalculator:1
+
+    - name: Push the Image
+      run: docker push saisandeep17/newCalculator:1
